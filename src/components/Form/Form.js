@@ -2,9 +2,13 @@ import { useState } from "react";
 import { TextField, Button, Typography, Paper } from "@material-ui/core";
 import FileBase from "react-file-base64";
 import useStyles from "./styles";
+import { useDispatch } from "react-redux";
+import { createPost } from "../../actions/posts";
 
 const Form = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+
   const [postData, setPostData] = useState({
     creator: "",
     title: "",
@@ -23,7 +27,8 @@ const Form = () => {
   };
 
   const handleSubmit = async (e) => {
-    //
+    e.preventDefault();
+    dispatch(createPost(postData));
   };
   return (
     <Paper className={classes.paper}>
@@ -67,6 +72,7 @@ const Form = () => {
         <TextField
           name="tags"
           variant="outlined"
+          label="Tags"
           fullWidth
           value={postData.tags}
           onChange={(e) => setPostData({ ...postData, tags: e.target.value })}
