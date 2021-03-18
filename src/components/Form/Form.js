@@ -39,6 +39,7 @@ const Form = () => {
     } else {
       dispatch(createPost(postData));
     }
+    clear();
   };
   return (
     <Paper className={classes.paper}>
@@ -48,7 +49,9 @@ const Form = () => {
         className={`${classes.root} ${classes.form}`}
         onSubmit={handleSubmit}
       >
-        <Typography variant="h6">Creating a Memory</Typography>
+        <Typography variant="h6">
+          {currentPost ? `Editing "${currentPost.title}"` : "Creating a Memory"}
+        </Typography>
         <TextField
           name="creator"
           variant="outlined"
