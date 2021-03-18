@@ -1,4 +1,5 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import {
   Card,
   CardActions,
@@ -6,24 +7,36 @@ import {
   CardMedia,
   Button,
   Typography,
+  CircularProgress,
 } from "@material-ui/core/";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 import DeleteIcon from "@material-ui/icons/Delete";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import moment from "moment";
+import { getCurrentPost } from "../../../actions/currentPost";
 
 import useStyles from "./styles";
 
 const Post = ({ post }) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const handleUpdatePost = (e) => {
+    e.preventDefault();
+    dispatch(getCurrentPost(post._id));
+  };
 
   return (
     <Card className={classes.card}>
-      <CardMedia
-        className={classes.media}
-        image={post.selectedFile}
-        title={post.title}
-      />
+      {post.selectedFile ? (
+        <CardMedia
+          className={classes.media}
+          image={post.selectedFile}
+          title={post.title}
+        />
+      ) : (
+        <CircularProgress color="secondary" />
+      )}
+
       <div className={classes.overlay}>
         <Typography variant="h6">{post.creator}</Typography>
         <Typography variant="body2">
@@ -31,7 +44,11 @@ const Post = ({ post }) => {
         </Typography>
       </div>
       <div className={classes.overlay2}>
-        <Button style={{ color: "white" }} size="small" onClick={() => {}}>
+        <Button
+          style={{ color: "white" }}
+          size="small"
+          onClick={handleUpdatePost}
+        >
           <MoreHorizIcon fontSize="default" />
         </Button>
       </div>
