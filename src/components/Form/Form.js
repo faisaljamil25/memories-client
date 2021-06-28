@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
-import { TextField, Button, Typography, Paper } from "@material-ui/core";
-import FileBase from "react-file-base64";
-import useStyles from "./styles";
-import { useDispatch, useSelector } from "react-redux";
-import { createPost, updatePost } from "../../actions/posts";
-import { clearForm } from "../../actions/currentPost";
+import { useState, useEffect } from 'react';
+import { TextField, Button, Typography, Paper } from '@material-ui/core';
+import FileBase from 'react-file-base64';
+import useStyles from './styles';
+import { useDispatch, useSelector } from 'react-redux';
+import { createPost, updatePost } from '../../actions/posts';
+import { clearForm } from '../../actions/currentPost';
 
 const Form = () => {
   const classes = useStyles();
@@ -15,20 +15,20 @@ const Form = () => {
     if (currentPost) setPostData(currentPost);
   }, [currentPost]);
   const [postData, setPostData] = useState({
-    creator: "",
-    title: "",
-    message: "",
-    tags: "",
-    selectedFile: "",
+    creator: '',
+    title: '',
+    message: '',
+    tags: '',
+    selectedFile: '',
   });
   const clear = () => {
     dispatch(clearForm());
     setPostData({
-      creator: "",
-      title: "",
-      message: "",
-      tags: "",
-      selectedFile: "",
+      creator: '',
+      title: '',
+      message: '',
+      tags: '',
+      selectedFile: '',
     });
   };
 
@@ -44,18 +44,18 @@ const Form = () => {
   return (
     <Paper className={classes.paper}>
       <form
-        autoComplete="off"
+        autoComplete='off'
         noValidate
         className={`${classes.root} ${classes.form}`}
         onSubmit={handleSubmit}
       >
-        <Typography variant="h6">
-          {currentPost ? `Editing "${currentPost.title}"` : "Creating a Memory"}
+        <Typography variant='h6'>
+          {currentPost ? `Editing "${currentPost.title}"` : 'Creating a Memory'}
         </Typography>
         <TextField
-          name="creator"
-          variant="outlined"
-          label="Creator"
+          name='creator'
+          variant='outlined'
+          label='Creator'
           fullWidth
           value={postData.creator}
           onChange={(e) =>
@@ -63,17 +63,17 @@ const Form = () => {
           }
         />
         <TextField
-          name="title"
-          variant="outlined"
-          label="Title"
+          name='title'
+          variant='outlined'
+          label='Title'
           fullWidth
           value={postData.title}
           onChange={(e) => setPostData({ ...postData, title: e.target.value })}
         />
         <TextField
-          name="message"
-          variant="outlined"
-          label="Message"
+          name='message'
+          variant='outlined'
+          label='Message'
           fullWidth
           multiline
           rows={4}
@@ -83,18 +83,18 @@ const Form = () => {
           }
         />
         <TextField
-          name="tags"
-          variant="outlined"
-          label="Tags"
+          name='tags'
+          variant='outlined'
+          label='Tags'
           fullWidth
           value={postData.tags}
           onChange={(e) =>
-            setPostData({ ...postData, tags: e.target.value.split(",") })
+            setPostData({ ...postData, tags: e.target.value.split(',') })
           }
         />
         <div className={classes.fileInput}>
           <FileBase
-            type="file"
+            type='file'
             multiple={false}
             onDone={({ base64 }) =>
               setPostData({ ...postData, selectedFile: base64 })
@@ -103,18 +103,18 @@ const Form = () => {
         </div>
         <Button
           className={classes.buttonSubmit}
-          variant="contained"
-          color="primary"
-          size="large"
-          type="submit"
+          variant='contained'
+          color='primary'
+          size='large'
+          type='submit'
           fullWidth
         >
           Submit
         </Button>
         <Button
-          variant="contained"
-          color="secondary"
-          size="small"
+          variant='contained'
+          color='secondary'
+          size='small'
           onClick={clear}
           fullWidth
         >

@@ -1,4 +1,4 @@
-import { GET_CURRENT_POST, CLEAR_CURRENT_POST } from "../constants/actionTypes";
+import { GET_CURRENT_POST, CLEAR_CURRENT_POST } from '../constants/actionTypes';
 
 const reducer = (post = null, action) => {
   switch (action.type) {
