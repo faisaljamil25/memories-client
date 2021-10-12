@@ -17,7 +17,7 @@ const Navbar = () => {
   const logout = () => {
     dispatch({ type: actionType.LOGOUT });
 
-    history.push('/auth');
+    history.push('/');
 
     setUser(null);
   };
@@ -46,7 +46,12 @@ const Navbar = () => {
         >
           Memories
         </Typography>
-        <img className={classes.image} src='/memories' alt='icon' height='60' />
+        <img
+          className={classes.image}
+          src='/memories.png'
+          alt='icon'
+          height='60'
+        />
       </div>
       <Toolbar className={classes.toolbar}>
         {user?.result ? (
