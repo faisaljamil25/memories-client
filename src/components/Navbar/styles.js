@@ -33,6 +33,11 @@ export default makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'space-between',
   },
+  profileDesk: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    width: '300px',
+  },
   userName: {
     display: 'flex',
     alignItems: 'center',

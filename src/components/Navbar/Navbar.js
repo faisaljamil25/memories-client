@@ -7,6 +7,7 @@ import {
   Button,
   Menu,
   MenuItem,
+  Hidden,
 } from '@material-ui/core';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -71,45 +72,71 @@ const Navbar = () => {
       </div>
       <Toolbar className={classes.toolbar}>
         {user?.result ? (
-          <div className={classes.profile}>
-            <Avatar
-              className={classes.purple}
-              alt={user?.result.name}
-              src={user?.result.imageUrl}
-              id='profile-button'
-              aria-controls='profile-menu'
-              aria-haspopup='true'
-              aria-expanded={openMenu ? 'true' : undefined}
-              onClick={handleClick}
-            >
-              {user?.result.name.charAt(0)}
-            </Avatar>
-            <Menu
-              id='profile-menu'
-              anchorEl={anchorEl}
-              open={openMenu}
-              onClose={handleClose}
-              MenuListProps={{
-                'aria-labelledby': 'profile-button',
-              }}
-            >
-              <MenuItem onClick={handleClose}>
+          <>
+            <Hidden mdUp>
+              <div className={classes.profile}>
+                <Avatar
+                  className={classes.purple}
+                  alt={user?.result.name}
+                  src={user?.result.imageUrl}
+                  id='profile-button'
+                  aria-controls='profile-menu'
+                  aria-haspopup='true'
+                  aria-expanded={openMenu ? 'true' : undefined}
+                  onClick={handleClick}
+                >
+                  {user?.result.name.charAt(0)}
+                </Avatar>
+                <Menu
+                  id='profile-menu'
+                  anchorEl={anchorEl}
+                  open={openMenu}
+                  onClose={handleClose}
+                  MenuListProps={{
+                    'aria-labelledby': 'profile-button',
+                  }}
+                >
+                  <MenuItem onClick={handleClose}>
+                    <Typography className={classes.userName} variant='h6'>
+                      {user?.result.name}
+                    </Typography>
+                  </MenuItem>
+                  <MenuItem onClick={handleClose}>
+                    <Button
+                      variant='contained'
+                      className={classes.btn}
+                      color='secondary'
+                      onClick={logout}
+                    >
+                      Logout
+                    </Button>
+                  </MenuItem>
+                </Menu>
+              </div>
+            </Hidden>
+            <Hidden smDown>
+              <div className={classes.profileDesk}>
+                <Avatar
+                  className={classes.purple}
+                  alt={user?.result.name}
+                  src={user?.result.imageUrl}
+                >
+                  {user?.result.name.charAt(0)}
+                </Avatar>
                 <Typography className={classes.userName} variant='h6'>
                   {user?.result.name}
                 </Typography>
-              </MenuItem>
-              <MenuItem onClick={handleClose}>
                 <Button
                   variant='contained'
-                  className={classes.btn}
+                  className={classes.logout}
                   color='secondary'
                   onClick={logout}
                 >
                   Logout
                 </Button>
-              </MenuItem>
-            </Menu>
-          </div>
+              </div>
+            </Hidden>
+          </>
         ) : (
           <Button
             component={Link}
