@@ -55,7 +55,7 @@ const Post = ({ post, setCurrentId }) => {
       <CardMedia
         className={classes.media}
         image={
-          `https://res.cloudinary.com/${process.env.REACT_APP_CLOUDINARY_USER}/image/upload/c_scale,w_400/v1/${post.selectedFile}` ||
+          `https://res.cloudinary.com/${process.env.REACT_APP_CLOUDINARY_NAME}/image/upload/c_scale,w_400/v1/${post.selectedFile}` ||
           'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'
         }
         title={post.title}
